@@ -19,3 +19,6 @@ jobs:
                 else
                     echo "Issue is neither related to data nor bug, or the naming convention has not been followed by the issue raiser"
                 fi
+
+
+

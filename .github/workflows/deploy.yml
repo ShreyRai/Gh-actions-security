@@ -1,0 +1,38 @@
+name: AWS OIDC
+on:
+    push:
+        branches:
+            [master]
+permissions:
+    id-token: write
+    contents: read
+jobs:
+    Collect:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the code
+              uses: actions/checkout@v5
+            - name: Collecting the files
+              run:  tar -vxf archive.tar
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: index_file
+                path: index.html
+    Deploy:
+        needs: Collect
+        runs-on: ubuntu-latest
+        steps:
+            - name: aws authentications
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                role-to-assume: arn:aws:iam::730335519137:role/github-actions-s3-role
+                aws-region: us-east-1
+            - name: Artifacts download
+              uses: actions/download-artifact@v4
+              with:
+                name: index_file
+            - name: List s3 files
+              run: aws s3 ls
+            - name: Copy index file
+              run: aws s3 cp index.html s3://website-bucket-12062026/
