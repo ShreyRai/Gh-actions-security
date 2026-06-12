@@ -13,9 +13,9 @@ jobs:
             - name: Checkout the code
               uses: actions/checkout@v5
             - name: check working directory
-              run: PWD = $(pwd)
+              run: echo "$(pwd)"
             - name: Collecting the files
-              run:  tar -vxf $PWD/ConfigFiles/archive.tar
+              run:  tar -vxf $(pwd)/ConfigFiles/archive.tar
             - name: Upload artifacts
               uses: actions/upload-artifact@v4
               with:
