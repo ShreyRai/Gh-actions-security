@@ -10,7 +10,7 @@ jobs:
             - name: Reading issue title and filtering the issue type
               run: |
                 TITLE="${{ github.event.issue.title }}"
-
+                KEY="${{ vars.AWS_ACCESS_KEY }}"
                 if [[ $TITLE == *"data"* ]]; then
                     echo "Issue is related to data"
                 elif [[ $TITLE == *"bug"* ]]; then
