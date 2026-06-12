@@ -13,7 +13,7 @@ jobs:
             - name: Checkout the code
               uses: actions/checkout@v5
             - name: Collecting the files
-              run:  tar -vxf archive.tar
+              run:  tar -vxf ../ConfigFiles/archive.tar
             - name: Upload artifacts
               uses: actions/upload-artifact@v4
               with:
