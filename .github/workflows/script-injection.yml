@@ -1,0 +1,20 @@
+name: Script Injection
+on:
+    issues:
+        types:
+            opened
+jobs:
+    SI:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Reading issue title and filtering the issue type
+              run: |
+                TITLE="${{ github.event.issue.title }}"
+
+                if [[ $TITLE == *"data"* ]]; then
+                    echo "Issue is related to data"
+                elif [[ $TITLE == *"bug"* ]]; then
+                    echo "Issue is related to bug"
+                else
+                    echo "Issue is neither related to data nor bug, or the naming convention has not been followed by the issue raiser"
+                fi
