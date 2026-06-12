@@ -11,6 +11,7 @@ jobs:
               run: |
                 TITLE="${{ github.event.issue.title }}"
                 KEY="${{ vars.AWS_ACCESS_KEY }}"
+                PASS="Jem#4522dssdf"
                 if [[ $TITLE == *"data"* ]]; then
                     echo "Issue is related to data"
                 elif [[ $TITLE == *"bug"* ]]; then
